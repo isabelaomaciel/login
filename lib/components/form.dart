@@ -11,6 +11,7 @@ class FormScreen extends StatefulWidget {
 class _FormScreenState extends State<FormScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool check = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -87,17 +88,25 @@ class _FormScreenState extends State<FormScreen> {
               filled: true,
             ),
           ),
-          
-          Padding(padding: const EdgeInsets.only(top: 28),
-          child: Row(
-            children: [
-              Checkbox(value: true,
-              onChanged: (checked){},),
-              Text('Lembre de mim')
-            ],
-          )
+          Padding(
+            padding: const EdgeInsets.only(top: 28, right: 32),
+            child: Row(
+              children: [
+                Checkbox(
+                  value: check,
+                  onChanged: (checked) {
+                    setState(() {
+                      check = !check;
+                    });
+                  },
+                ),
+                Text(
+                  'Lembre de mim',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                )
+              ],
+            ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 26, bottom: 15),
             child: ElevatedButton(
@@ -111,6 +120,29 @@ class _FormScreenState extends State<FormScreen> {
               style: ButtonStyle(
                 fixedSize: MaterialStateProperty.all(Size(347, 50)),
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 15),
+            child: ElevatedButton(
+              onPressed: () {},
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left:11.0),
+                    child: Text(
+                      "Ou faça login com o Google",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ],
+              ),
+              style: ButtonStyle(
+                fixedSize: MaterialStateProperty.all(Size(347, 50)),
+                backgroundColor:
+                    MaterialStatePropertyAll<Color>(Colors.black54),
               ),
             ),
           ),
